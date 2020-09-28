@@ -53,7 +53,7 @@ function updateUI() {
         document.querySelector("#currentDisplayWord").innerText = snowmanGame.getDisplayText()
     }
 
-    document.querySelector("#guessesRemainingPara").innerText = snowmanGame.guessesRemaining + " Guesses remaining BLAH"
+    document.querySelector("#guessesRemainingPara").innerText = snowmanGame.guessesRemaining + " Guesses remaining"
     document.querySelector("#snowmanImage").src = getImage(snowmanGame.guessesRemaining)
     document.querySelector("#letterInput").value = ""
 }
