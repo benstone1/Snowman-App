@@ -19,9 +19,11 @@ function handleFormSubmitted(event) {
     switch (guessResult) {
         case SnowmanGuessResults.GAMEOVER.VICTORY:
             showPlayAgainButton()
+            updateUI({msg: "You win!"})
+            break
         case SnowmanGuessResults.GAMEOVER.DEFEAT:
             showPlayAgainButton()
-            updateUI()
+            updateUI({msg: "Game over - defeat."})
             break
         case SnowmanGuessResults.CORRECT:
             updateUI()
@@ -38,7 +40,7 @@ function getInputText() {
     return letterInput.value.toLowerCase()
 }
 
-function updateUI() {
+function updateUI(status) {
     console.log("updatingui")
     let guessedLettersPara = document.querySelector("#guessedLettersPara")
     if (!snowmanGame.guessedLetters.length) {
@@ -53,7 +55,12 @@ function updateUI() {
         document.querySelector("#currentDisplayWord").innerText = snowmanGame.getDisplayText()
     }
 
-    document.querySelector("#guessesRemainingPara").innerText = snowmanGame.guessesRemaining + " Guesses remaining"
+    if (status) {
+      document.querySelector("#guessesRemainingPara").innerText = status.msg
+    } else {
+      document.querySelector("#guessesRemainingPara").innerText = snowmanGame.guessesRemaining + " Guesses remaining"
+    }
+
     document.querySelector("#snowmanImage").src = getImage(snowmanGame.guessesRemaining)
     document.querySelector("#letterInput").value = ""
 }
