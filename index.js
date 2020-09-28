@@ -73,6 +73,6 @@ function showPlayAgainButton() {
 }
 
 function getImage(guessesRemaining) {
-    let imageNum = 10 - guessesRemaining
+    let imageNum = 9 - guessesRemaining
     return "https://www.hanginghyena.com/static/branding/art/Snowman-" + imageNum + ".jpg"
 }
