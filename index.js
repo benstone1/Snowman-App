@@ -1,4 +1,4 @@
-let hangmanGame = new HangmanGame()
+let SnowmanGame = new SnowmanGame()
 
 document.addEventListener("DOMContentLoaded", () => {
     configureGuessButton()
@@ -14,19 +14,19 @@ function handleFormSubmitted(event) {
     event.preventDefault()
     let displayText = ""
     let inputLetter = getInputText()
-    let guessResult = hangmanGame.guessLetter(inputLetter)
+    let guessResult = SnowmanGame.guessLetter(inputLetter)
 
     switch (guessResult) {
-        case HangmanGuessResults.GAMEOVER.VICTORY:
+        case SnowmanGuessResults.GAMEOVER.VICTORY:
             showPlayAgainButton()
-        case HangmanGuessResults.GAMEOVER.DEFEAT:
+        case SnowmanGuessResults.GAMEOVER.DEFEAT:
             showPlayAgainButton()
             updateUI()
             break
-        case HangmanGuessResults.CORRECT:
+        case SnowmanGuessResults.CORRECT:
             updateUI()
             break
-        case HangmanGuessResults.INCORRECT:
+        case SnowmanGuessResults.INCORRECT:
             updateUI()
             break
     }
@@ -41,20 +41,20 @@ function getInputText() {
 function updateUI() {
     console.log("updatingui")
     let guessedLettersPara = document.querySelector("#guessedLettersPara")
-    if (!hangmanGame.guessedLetters.length) {
+    if (!SnowmanGame.guessedLetters.length) {
         guessedLettersPara.innerText = "No guessed letters"
     } else {
-        guessedLettersPara.innerText = hangmanGame.guessedLetters
+        guessedLettersPara.innerText = SnowmanGame.guessedLetters
     }
 
-    if (hangmanGame.guessesRemaining === 0) {
-        document.querySelector("#currentDisplayWord").innerText = hangmanGame.wordToGuess
+    if (SnowmanGame.guessesRemaining === 0) {
+        document.querySelector("#currentDisplayWord").innerText = SnowmanGame.wordToGuess
     } else {
-        document.querySelector("#currentDisplayWord").innerText = hangmanGame.getDisplayText()
+        document.querySelector("#currentDisplayWord").innerText = SnowmanGame.getDisplayText()
     }
 
-    document.querySelector("#guessesRemainingPara").innerText = hangmanGame.guessesRemaining + " Guesses remaining"
-    document.querySelector("#hangmanImage").src = getImage(hangmanGame.guessesRemaining)
+    document.querySelector("#guessesRemainingPara").innerText = SnowmanGame.guessesRemaining + " Guesses remaining"
+    document.querySelector("#SnowmanImage").src = getImage(SnowmanGame.guessesRemaining)
     document.querySelector("#letterInput").value = ""
 }
 
@@ -63,9 +63,9 @@ function showPlayAgainButton() {
     newButton.innerText = "New Game"
     document.querySelector("#fieldset").disabled = "disabled"
     newButton.addEventListener('click', () => {
-        hangmanGame = new HangmanGame()
+        SnowmanGame = new SnowmanGame()
         updateUI()
-        document.querySelector("#gameMessagePara").innerText = 'Welcome to Hangman'
+        document.querySelector("#gameMessagePara").innerText = 'Welcome to Snowman'
         newButton.parentElement.removeChild(newButton)
         document.querySelector("#fieldset").disabled = undefined
     })
@@ -74,5 +74,5 @@ function showPlayAgainButton() {
 
 function getImage(guessesRemaining) {
     let imageNum = 10 - guessesRemaining
-    return "https://www.oligalma.com/downloads/images/hangman/hangman/" + imageNum + ".jpg"
+    return "https://www.hanginghyena.com/static/branding/art/Snowman-" + imageNum + ".jpg"
 }
