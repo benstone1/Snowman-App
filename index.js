@@ -1,4 +1,4 @@
-let SnowmanGame = new SnowmanGame()
+let snowmanGame = new SnowmanGame()
 
 document.addEventListener("DOMContentLoaded", () => {
     configureGuessButton()
@@ -14,7 +14,7 @@ function handleFormSubmitted(event) {
     event.preventDefault()
     let displayText = ""
     let inputLetter = getInputText()
-    let guessResult = SnowmanGame.guessLetter(inputLetter)
+    let guessResult = snowmanGame.guessLetter(inputLetter)
 
     switch (guessResult) {
         case SnowmanGuessResults.GAMEOVER.VICTORY:
@@ -41,20 +41,20 @@ function getInputText() {
 function updateUI() {
     console.log("updatingui")
     let guessedLettersPara = document.querySelector("#guessedLettersPara")
-    if (!SnowmanGame.guessedLetters.length) {
+    if (!snowmanGame.guessedLetters.length) {
         guessedLettersPara.innerText = "No guessed letters"
     } else {
-        guessedLettersPara.innerText = SnowmanGame.guessedLetters
+        guessedLettersPara.innerText = snowmanGame.guessedLetters
     }
 
-    if (SnowmanGame.guessesRemaining === 0) {
-        document.querySelector("#currentDisplayWord").innerText = SnowmanGame.wordToGuess
+    if (snowmanGame.guessesRemaining === 0) {
+        document.querySelector("#currentDisplayWord").innerText = snowmanGame.wordToGuess
     } else {
-        document.querySelector("#currentDisplayWord").innerText = SnowmanGame.getDisplayText()
+        document.querySelector("#currentDisplayWord").innerText = snowmanGame.getDisplayText()
     }
 
-    document.querySelector("#guessesRemainingPara").innerText = SnowmanGame.guessesRemaining + " Guesses remaining"
-    document.querySelector("#SnowmanImage").src = getImage(SnowmanGame.guessesRemaining)
+    document.querySelector("#guessesRemainingPara").innerText = snowmanGame.guessesRemaining + " Guesses remaining"
+    document.querySelector("#snowmanImage").src = getImage(snowmanGame.guessesRemaining)
     document.querySelector("#letterInput").value = ""
 }
 
@@ -63,7 +63,7 @@ function showPlayAgainButton() {
     newButton.innerText = "New Game"
     document.querySelector("#fieldset").disabled = "disabled"
     newButton.addEventListener('click', () => {
-        SnowmanGame = new SnowmanGame()
+        snowmanGame = new SnowmanGame()
         updateUI()
         document.querySelector("#gameMessagePara").innerText = 'Welcome to Snowman'
         newButton.parentElement.removeChild(newButton)
