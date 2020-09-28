@@ -30,7 +30,7 @@ function handleFormSubmitted(event) {
             updateUI()
             break
     }
-    document.querySelector("#gameMessagePara").innerText = guessResult
+    document.querySelector("#gameMessagePara").innerText = ""
 }
 
 function getInputText() {
@@ -42,9 +42,9 @@ function updateUI() {
     console.log("updatingui")
     let guessedLettersPara = document.querySelector("#guessedLettersPara")
     if (!snowmanGame.guessedLetters.length) {
-        guessedLettersPara.innerText = "No guessed letters"
+        guessedLettersPara.innerText = "Guessed letters: "
     } else {
-        guessedLettersPara.innerText = snowmanGame.guessedLetters
+        guessedLettersPara.innerText = "Guessed letters: [" + snowmanGame.guessedLetters + "]"
     }
 
     if (snowmanGame.guessesRemaining === 0) {
@@ -65,7 +65,7 @@ function showPlayAgainButton() {
     newButton.addEventListener('click', () => {
         snowmanGame = new SnowmanGame()
         updateUI()
-        document.querySelector("#gameMessagePara").innerText = 'Welcome to Snowman'
+        document.querySelector("#gameMessagePara").innerText = ''
         newButton.parentElement.removeChild(newButton)
         document.querySelector("#fieldset").disabled = undefined
     })
